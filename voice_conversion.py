@@ -42,11 +42,11 @@ class VoiceConversion:
         self.decode(f'{tgt_dir}/prompt.wav', prompt_tokens.squeeze(0))
         semantic_tokens = src_tokens[:, :, 0]
         for step in steps:
-            generated = self.soundstorm.genenrate(semantic_tokens=semantic_tokens,
+            generated = self.soundstorm.generate(semantic_tokens=semantic_tokens,
                                                 steps=step,
                                                 greedy=greedy)
             self.decode(f'{tgt_dir}/unconditonal_{step}.wav', generated.squeeze(0))
-            generated = self.soundstorm.genenrate(semantic_tokens=semantic_tokens,
+            generated = self.soundstorm.generate(semantic_tokens=semantic_tokens,
                                                 prompt_tokens=prompt_tokens,
                                                 steps=step,
                                                 greedy=greedy)

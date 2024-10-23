@@ -71,7 +71,7 @@ def coin_flip():
 
 # tensor helpers
 
-@beartype
+# @beartype
 def get_mask_subset_prob(
     mask: Tensor,
     prob: Union[float, Tensor],
@@ -451,7 +451,7 @@ class Conformer(nn.Module):
 
 class ConformerWrapper(nn.Module):
 
-    @beartype
+    # @beartype
     def __init__(
         self,
         *,

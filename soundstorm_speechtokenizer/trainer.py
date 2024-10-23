@@ -62,7 +62,7 @@ def checkpoint_num_steps(checkpoint_path):
 
 
 class SoundStormTrainer(nn.Module):
-    @beartype
+    # @beartype
     def __init__(
         self,
         model: SoundStorm,

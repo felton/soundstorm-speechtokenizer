@@ -56,8 +56,8 @@ class VoiceConversion:
     
 
 if __name__ == '__main__':
-    st_cfg = '/path/config.json'
-    st_ckpt = '/path/SpeechTokenizer.pt'  
+    st_cfg = os.getenv("ST_CONFIG_PATH")
+    st_ckpt = os.getenv("ST_CKPT_PATH")  
     tokenizer = SpeechTokenizer.load_from_checkpoint(st_cfg, st_ckpt)
 
     conformer = ConformerWrapper(codebook_size=1024,
@@ -70,12 +70,12 @@ if __name__ == '__main__':
                             semantic_pad_id=1024,
                             pad_id=1024,
                             schedule = 'cosine')
-    soundstorm.load('/path/SoundStorm_best_dev.pt')
-    device = 'cuda:1'
+    soundstorm.load(os.getenv("SS_CKPT_PATH"))
+    device = 'cuda:0'
     vc = VoiceConversion(tokenizer=tokenizer,
                          soundstorm=soundstorm,
                          device=device)
-    root_dir = '/path/LibriSpeech/LibriSpeech/dev-clean'
+    root_dir = os.getenv("LIBRISPEECH_PATH") #'/path/LibriSpeech/LibriSpeech/dev-clean'
     speakers = [folder for folder in os.listdir(root_dir) if '.txt' not in folder]
     file_dict = {speaker:[f'{chapter}/{file}' for chapter in os.listdir(f'{root_dir}/{speaker}') for file in os.listdir(f'{root_dir}/{speaker}/{chapter}') if '.txt' not in file] for speaker in speakers}
     tgt_dir = './vc_samples'

@@ -37,7 +37,12 @@ setup(
     install_requires=['speechtokenizer',
                       'accelerate',
                       'beartype',
-                      'lion-pytorch'],
+                      'lion-pytorch',                      
+                      'torch',
+                      'torchaudio',
+                      'einops',
+                      'packaging'
+    ],
     include_package_data=True,
     license='MIT License',
     classifiers=[

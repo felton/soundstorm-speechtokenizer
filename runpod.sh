@@ -1,5 +1,6 @@
 #!/usr/bin/env bash
 
+echo "Downloading software/models"
 cd /workspace
 mkdir SoundStorm
 curl -s https://packagecloud.io/install/repositories/github/git-lfs/script.deb.sh | bash
@@ -13,3 +14,5 @@ cd soundstorm-speechtokenizer
 pip install .
 git checkout runpod
 export $(cat .env | xargs)
+
+echo "Done"
